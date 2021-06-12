@@ -1,24 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import {
+  BrowserRouter,
+  Route,
+  Switch,
+  Link,
+} from 'react-router-dom';
+import User from './user';
+import Incrementer from './incrementer';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Switch>
+        <Route path={'/users/:username'}>
+          <User />
+        </Route>
+        <Route path={'/'} exact>
+          <h1>Home Page</h1>
+          <Link to={'/users/eliot'}>Go To Users</Link>
+        </Route>
+        <Route>
+          <h1>404 Page Not Found</h1>
+        </Route>
+      </Switch>
+      <Incrementer />
+    </BrowserRouter>
   );
 }
 
